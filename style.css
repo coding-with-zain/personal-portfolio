@@ -1,0 +1,1563 @@
+/* ============ متغیرها - پالت زمرد و طلا ============ */
+:root {
+    --emerald: #10b981;
+    --emerald-dark: #047857;
+    --emerald-light: #34d399;
+    --gold: #fbbf24;
+    --gold-dark: #d97706;
+    --gold-light: #fcd34d;
+    --obsidian: #0a0f0d;
+    --obsidian-2: #101815;
+    --obsidian-3: #1a2420;
+    --card: rgba(16, 24, 21, 0.7);
+    --border: rgba(16, 185, 129, 0.2);
+    --border-gold: rgba(251, 191, 36, 0.3);
+    --text: #ecfdf5;
+    --text-2: #a7f3d0;
+    --text-3: #6b9080;
+    --glow-em: 0 0 40px rgba(16, 185, 129, 0.5);
+    --glow-gold: 0 0 40px rgba(251, 191, 36, 0.5);
+    --radius: 20px;
+    --radius-lg: 28px;
+  }
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: 'Vazirmatn', Tahoma, sans-serif;
+    background: var(--obsidian);
+    color: var(--text);
+    line-height: 1.85;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+  }
+  ::selection { background: var(--emerald); color: #fff; }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--obsidian-2); }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--emerald), var(--gold));
+    border-radius: 10px;
+  }
+  
+  /* ============ پس‌زمینه ============ */
+  .bg-emerald {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background:
+      radial-gradient(ellipse at 15% 20%, rgba(16,185,129,0.18), transparent 45%),
+      radial-gradient(ellipse at 85% 80%, rgba(251,191,36,0.12), transparent 45%),
+      radial-gradient(ellipse at 50% 50%, rgba(4,120,87,0.15), transparent 60%),
+      var(--obsidian);
+  }
+  .bg-emerald::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 100px 150px, rgba(251,191,36,0.7), transparent),
+      radial-gradient(1px 1px at 250px 80px, rgba(16,185,129,0.8), transparent),
+      radial-gradient(1px 1px at 400px 200px, #fff, transparent),
+      radial-gradient(2px 2px at 550px 120px, rgba(251,191,36,0.5), transparent),
+      radial-gradient(1px 1px at 700px 250px, rgba(16,185,129,0.6), transparent);
+    background-size: 800px 300px;
+    animation: starsSlide 80s linear infinite;
+    opacity: 0.6;
+  }
+  @keyframes starsSlide {
+    from { background-position: 0 0; }
+    to { background-position: 800px 300px; }
+  }
+  
+  /* موج‌های متحرک */
+  .wave-bg {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 300px;
+    z-index: -2;
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  .wave-bg svg {
+    width: 100%;
+    height: 100%;
+  }
+  .wave-1 { animation: waveMove 20s linear infinite; }
+  .wave-2 { animation: waveMove 25s linear infinite reverse; opacity: 0.5; }
+  @keyframes waveMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  
+  /* خطوط تزئینی */
+  .deco-line {
+    position: fixed;
+    background: linear-gradient(180deg, transparent, var(--emerald), transparent);
+    width: 1px;
+    opacity: 0.15;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .deco-line-1 { left: 10%; height: 400px; top: 20%; }
+  .deco-line-2 { right: 15%; height: 500px; top: 40%; }
+  .deco-line-3 { left: 50%; height: 350px; bottom: 10%; }
+  
+  /* ============ هدر ============ */
+  .header-zf {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 18px 0;
+    transition: all 0.4s;
+  }
+  .header-zf.scrolled {
+    background: rgba(10, 15, 13, 0.9);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-zf {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  /* لوگو اختصاصی ZF */
+  .logo-zf {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    letter-spacing: 3px;
+    flex-shrink: 0;
+  }
+  .diamond-logo {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .diamond-outer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--emerald), var(--gold));
+    transform: rotate(45deg);
+    border-radius: 8px;
+    animation: diamondSpin 10s linear infinite;
+    box-shadow:
+      0 0 25px rgba(16,185,129,0.6),
+      0 0 50px rgba(251,191,36,0.3);
+  }
+  .diamond-inner {
+    position: absolute;
+    inset: 4px;
+    background: var(--obsidian);
+    transform: rotate(45deg);
+    border-radius: 6px;
+  }
+  .diamond-text {
+    position: relative;
+    z-index: 2;
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--emerald-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -1px;
+  }
+  @keyframes diamondSpin {
+    0%, 100% { transform: rotate(45deg); }
+    50% { transform: rotate(225deg); }
+  }
+  .logo-name-zf {
+    background: linear-gradient(135deg, #fff 40%, var(--emerald-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .nav-links-zf {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    padding: 6px;
+    background: rgba(16, 24, 21, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    backdrop-filter: blur(20px);
+  }
+  .nav-links-zf a {
+    color: var(--text-2);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.88rem;
+    padding: 8px 18px;
+    border-radius: 50px;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+  .nav-links-zf a:hover,
+  .nav-links-zf a.active {
+    color: #fff;
+    background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
+  }
+  .cta-zf {
+    padding: 11px 24px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--obsidian);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 0 30px rgba(251, 191, 36, 0.4);
+    transition: all 0.3s;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-zf::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--emerald-light), var(--emerald));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .cta-zf > * { position: relative; z-index: 1; }
+  .cta-zf:hover::before { opacity: 1; }
+  .cta-zf:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 45px rgba(251, 191, 36, 0.7);
+    color: #fff;
+  }
+  .menu-zf {
+    display: none;
+    width: 44px; height: 44px;
+    background: rgba(16, 24, 21, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(20px);
+  }
+  
+  /* ============ Hero ============ */
+  .hero-zf {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 30px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-inner-zf {
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 70px;
+    align-items: center;
+  }
+  .hero-left-zf { position: relative; z-index: 2; }
+  
+  .badge-zf {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--emerald-light);
+    margin-bottom: 25px;
+    animation: fadeSlideZf 0.8s ease both;
+  }
+  .badge-dot-zf {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--emerald-light);
+    box-shadow: 0 0 12px var(--emerald-light);
+    animation: pulseZf 2s infinite;
+  }
+  @keyframes pulseZf {
+    0%,100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+  }
+  
+  .hero-name-zf {
+    font-family: 'Cinzel', 'Vazirmatn', serif;
+    font-size: 3.8rem;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 22px;
+   
+    animation: fadeSlideZf 0.8s ease 0.1s both;
+  }
+  .hero-name-zf .letter {
+    display: inline-block;
+    background: linear-gradient(135deg, #fff 20%, var(--emerald-light) 50%, var(--gold) 80%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: letterReveal 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+               gradientMove 6s ease-in-out infinite 1s;
+  }
+  @keyframes letterReveal {
+    from { opacity: 0; transform: translateY(50px) rotateX(-90deg); }
+    to { opacity: 1; transform: translateY(0) rotateX(0); }
+  }
+  @keyframes gradientMove {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  .hero-title-zf {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-2);
+    margin-bottom: 25px;
+    min-height: 2.2rem;
+    animation: fadeSlideZf 0.8s ease 0.2s both;
+  }
+  .typed-zf {
+    color: var(--emerald-light);
+    font-weight: 700;
+    position: relative;
+  }
+  .typed-zf::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--emerald), var(--gold));
+    border-radius: 2px;
+  }
+  .cursor-zf {
+    display: inline-block;
+    width: 3px;
+    height: 1.2em;
+    background: var(--gold);
+    margin-right: 4px;
+    vertical-align: middle;
+    box-shadow: 0 0 10px var(--gold);
+    animation: blinkZf 0.9s infinite;
+  }
+  @keyframes blinkZf { 50% { opacity: 0; } }
+  
+  .hero-desc-zf {
+    color: var(--text-3);
+    font-size: 1.05rem;
+    margin-bottom: 35px;
+    max-width: 560px;
+    animation: fadeSlideZf 0.8s ease 0.3s both;
+  }
+  .hero-desc-zf strong { color: var(--emerald-light); font-weight: 600; }
+  .hero-desc-zf .gold-text { color: var(--gold); font-weight: 600; }
+  
+  .hero-buttons-zf {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    animation: fadeSlideZf 0.8s ease 0.4s both;
+  }
+  .btn-zf {
+    padding: 15px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-zf-fill {
+    background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+    color: #fff;
+    box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+  }
+  .btn-zf-fill::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    transform: translateX(-100%);
+    transition: transform 0.4s;
+  }
+  .btn-zf-fill:hover::before { transform: translateX(0); }
+  .btn-zf-fill > * { position: relative; z-index: 1; }
+  .btn-zf-fill:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 20px 60px rgba(251, 191, 36, 0.5);
+    color: var(--obsidian);
+  }
+  
+  .btn-zf-outline {
+    background: transparent;
+    color: var(--text);
+    border: 2px solid var(--border-gold);
+  }
+  .btn-zf-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px rgba(251, 191, 36, 0.3);
+  }
+  
+  .socials-zf {
+    display: flex;
+    gap: 12px;
+    animation: fadeSlideZf 0.8s ease 0.5s both;
+  }
+  .social-zf {
+    width: 48px; height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: rgba(16, 24, 21, 0.7);
+    border: 1px solid var(--border);
+    color: var(--text-2);
+    text-decoration: none;
+    font-size: 1.15rem;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+  }
+  .social-zf::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--emerald), var(--gold));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .social-zf > * { position: relative; z-index: 1; }
+  .social-zf:hover {
+    transform: translateY(-6px) rotate(-8deg);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 15px 40px rgba(16, 185, 129, 0.5);
+  }
+  .social-zf:hover::before { opacity: 1; }
+  
+  @keyframes fadeSlideZf {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* ============ عکس زین‌الله ============ */
+  .hero-right-zf {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+    animation: fadeSlideZf 0.8s ease 0.3s both;
+  }
+  .photo-container-zf {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    max-width: 100%;
+  }
+  
+  /* قاب شش‌ضلعی */
+  .hex-frame {
+    position: absolute;
+    inset: -30px;
+    border: 2px solid var(--border-gold);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    animation: hexPulse 4s ease-in-out infinite;
+  }
+  .hex-frame-2 {
+    inset: -15px;
+    border: 1px solid var(--emerald);
+    opacity: 0.6;
+    animation-delay: 1s;
+  }
+  @keyframes hexPulse {
+    0%,100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+  }
+  
+  /* هاله */
+  .halo-zf {
+    position: absolute;
+    inset: 30px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, rgba(16,185,129,0.5), transparent 60%),
+      radial-gradient(circle, rgba(251,191,36,0.3), transparent 70%);
+    filter: blur(35px);
+    animation: haloPulseZf 5s ease-in-out infinite;
+  }
+  @keyframes haloPulseZf {
+    0%,100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.18); opacity: 1; }
+  }
+  
+  /* عکس اصلی */
+  .photo-main-zf {
+    position: absolute;
+    inset: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid transparent;
+    background:
+      linear-gradient(var(--obsidian), var(--obsidian)) padding-box,
+      conic-gradient(from 0deg, var(--emerald), var(--gold), var(--emerald-light), var(--gold-dark), var(--emerald)) border-box;
+    box-shadow:
+      0 0 70px rgba(16, 185, 129, 0.5),
+      0 0 120px rgba(251, 191, 36, 0.3),
+      inset 0 0 60px rgba(16, 185, 129, 0.2);
+    animation: photoFloatZf 6s ease-in-out infinite, borderRotate 8s linear infinite;
+    z-index: 2;
+    transition: transform 0.1s;
+  }
+  @keyframes photoFloatZf {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+  }
+  @keyframes borderRotate {
+    to { filter: hue-rotate(360deg); }
+  }
+  .photo-main-zf img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* ذرات دور عکس */
+  .orbit-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    z-index: 5;
+    top: 50%;
+    left: 50%;
+  }
+  .orbit-dot-1 {
+    background: var(--emerald);
+    box-shadow: 0 0 15px var(--emerald);
+    animation: orbit1 8s linear infinite;
+  }
+  .orbit-dot-2 {
+    background: var(--gold);
+    box-shadow: 0 0 15px var(--gold);
+    animation: orbit2 12s linear infinite;
+  }
+  .orbit-dot-3 {
+    background: var(--emerald-light);
+    box-shadow: 0 0 15px var(--emerald-light);
+    animation: orbit3 15s linear infinite;
+  }
+  @keyframes orbit1 {
+    from { transform: rotate(0deg) translateX(210px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(210px) rotate(-360deg); }
+  }
+  @keyframes orbit2 {
+    from { transform: rotate(0deg) translateX(240px) rotate(0deg); }
+    to { transform: rotate(-360deg) translateX(240px) rotate(360deg); }
+  }
+  @keyframes orbit3 {
+    from { transform: rotate(0deg) translateX(185px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(185px) rotate(-360deg); }
+  }
+  
+  /* بج‌ها */
+  .chip-zf {
+    position: absolute;
+    background: rgba(10, 15, 13, 0.9);
+    backdrop-filter: blur(20px);
+    padding: 10px 16px;
+    border-radius: 50px;
+    border: 1px solid var(--border-gold);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 6;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    white-space: nowrap;
+  }
+  .chip-zf .chip-ic {
+    color: var(--gold);
+    font-size: 1rem;
+  }
+  .chip-zf-1 {
+    top: 20px;
+    right: 0;
+    animation: chipFloatZf 4s ease-in-out infinite;
+  }
+  .chip-zf-2 {
+    bottom: 60px;
+    left: -10px;
+    animation: chipFloatZf 5s ease-in-out infinite 0.5s;
+  }
+  .chip-zf-3 {
+    bottom: 10px;
+    right: 40px;
+    animation: chipFloatZf 4.5s ease-in-out infinite 1s;
+  }
+  @keyframes chipFloatZf {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(-3deg); }
+  }
+  
+  /* ============ نوار افتخارات ============ */
+  .achievements-bar {
+    padding: 30px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: rgba(16, 24, 21, 0.4);
+    overflow: hidden;
+    margin: 40px 0;
+    position: relative;
+  }
+  .achievements-bar::before,
+  .achievements-bar::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 150px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .achievements-bar::before {
+    right: 0;
+    background: linear-gradient(to left, var(--obsidian), transparent);
+  }
+  .achievements-bar::after {
+    left: 0;
+    background: linear-gradient(to right, var(--obsidian), transparent);
+  }
+  .achievements-track {
+    display: flex;
+    gap: 70px;
+    animation: trackMove 35s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes trackMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(50%); }
+  }
+  .achievement-item {
+    font-family: 'Cinzel', 'Vazirmatn', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-3);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+    transition: color 0.3s;
+  }
+  .achievement-item:hover { color: var(--emerald-light); }
+  .achievement-diamond {
+    width: 10px; height: 10px;
+    background: linear-gradient(135deg, var(--emerald), var(--gold));
+    transform: rotate(45deg);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+  }
+  
+  /* ============ بخش‌ها ============ */
+  .section-zf {
+    padding: 100px 30px;
+    position: relative;
+  }
+  .container-zf {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .head-zf {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+  .eyebrow-zf {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    padding: 8px 20px;
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid var(--border-gold);
+    border-radius: 50px;
+  }
+  .eyebrow-zf::before,
+  .eyebrow-zf::after {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+  
+  .title-zf {
+    font-family: 'Cinzel', 'Vazirmatn', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #fff 30%, var(--emerald-light) 65%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+  }
+  .sub-zf {
+    color: var(--text-3);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* ============ درباره ============ */
+  .about-zf {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-photo-wrap-zf {
+    position: relative;
+    padding: 20px;
+  }
+  .about-photo-frame-zf {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    box-shadow: 0 40px 90px rgba(0,0,0,0.7), 0 0 60px rgba(16,185,129,0.3);
+    border: 2px solid var(--border-gold);
+    
+  }
+  .about-photo-frame-zf::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(16,185,129,0.25), transparent 50%, rgba(251,191,36,0.25));
+    z-index: 2;
+    pointer-events: none;
+  }
+  .about-photo-frame-zf::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,15,13,0.85), transparent 55%);
+    z-index: 2;
+    pointer-events: none;
+  }
+  .about-photo-frame-zf img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s;
+  }
+  .about-photo-frame-zf:hover img {
+    transform: scale(1.06);
+  }
+  .about-overlay-zf {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    left: 30px;
+    z-index: 3;
+    color: #fff;
+  }
+  .about-overlay-zf .diamond-mini {
+    width: 12px; height: 12px;
+    background: linear-gradient(135deg, var(--emerald), var(--gold));
+    transform: rotate(45deg);
+    margin-bottom: 12px;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+  }
+  .about-overlay-zf strong {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+  }
+  .about-overlay-zf span {
+    color: var(--gold);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  /* قاب تزئینی کنار عکس */
+  .about-photo-wrap-zf::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    border-top: 3px solid var(--emerald);
+    border-right: 3px solid var(--emerald);
+    border-radius: 0 20px 0 0;
+  }
+  .about-photo-wrap-zf::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    border-bottom: 3px solid var(--gold);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 0 0 20px;
+  }
+  
+  .about-text-zf h3 {
+    font-family: 'Cinzel', 'Vazirmatn', serif;
+    font-size: 1.9rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+    color: var(--text);
+  }
+  .about-text-zf h3 span {
+    background: linear-gradient(135deg, var(--emerald-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .about-text-zf p {
+    color: var(--text-2);
+    font-size: 1rem;
+    margin-bottom: 20px;
+    line-height: 1.9;
+  }
+  .about-text-zf strong { color: var(--emerald-light); }
+  
+  .about-quote {
+    padding: 20px 25px;
+    background: rgba(16, 185, 129, 0.08);
+    border-right: 3px solid var(--gold);
+    border-radius: var(--radius);
+    margin: 25px 0;
+    font-style: italic;
+    color: var(--text-2);
+    font-size: 0.98rem;
+  }
+  
+  .about-stats-zf {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 35px;
+  }
+  .stat-zf {
+    padding: 22px 16px;
+    background: rgba(16, 24, 21, 0.7);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-align: center;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-zf::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+  }
+  .stat-zf:hover::before { transform: translateX(100%); }
+  .stat-zf:hover {
+    transform: translateY(-6px);
+    border-color: var(--border-gold);
+    box-shadow: 0 20px 50px rgba(251, 191, 36, 0.2);
+  }
+  .num-zf {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--emerald-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .label-zf {
+    color: var(--text-3);
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+  
+  /* ============ مهارت‌ها - دایره‌ای ============ */
+  .skills-circular {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+  }
+  .skill-circle-card {
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(16, 24, 21, 0.6);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(20px);
+    transition: all 0.4s;
+  }
+  .skill-circle-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--border-gold);
+    box-shadow: 0 25px 60px rgba(251, 191, 36, 0.25);
+  }
+  .circular-progress {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 20px;
+  }
+  .circular-progress svg {
+    transform: rotate(-90deg);
+    width: 100%;
+    height: 100%;
+  }
+  .circular-progress circle {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+  }
+  .circular-bg {
+    stroke: rgba(16, 185, 129, 0.15);
+  }
+  .circular-fill {
+    stroke: url(#gradCircle);
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: 339.292;
+    transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.6));
+  }
+  .circular-value {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--emerald-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .skill-circle-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  
+  /* ============ پروژه‌ها با فیلتر ============ */
+  .filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 45px;
+  }
+  .filter-btn {
+    padding: 10px 22px;
+    background: rgba(16, 24, 21, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    color: var(--text-2);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+  }
+  .filter-btn:hover {
+    border-color: var(--emerald);
+    color: var(--emerald-light);
+  }
+  .filter-btn.active {
+    background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+  }
+  
+  .projects-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .project-gallery-card {
+    background: rgba(16, 24, 21, 0.6);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    animation: cardFadeIn 0.5s ease both;
+  }
+  @keyframes cardFadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .project-gallery-card.hidden {
+    display: none;
+  }
+  .project-gallery-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--border-gold);
+    box-shadow: 0 35px 80px rgba(16, 185, 129, 0.3);
+  }
+  .pgc-thumb {
+    height: 190px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.8rem;
+    color: #fff;
+  }
+  .pgc-thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 55%);
+  }
+  .pgc-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.15) 1px, transparent 1px);
+    background-size: 25px 25px;
+  }
+  .pgc-1 { background: linear-gradient(135deg, #10b981, #047857); }
+  .pgc-2 { background: linear-gradient(135deg, #fbbf24, #d97706); }
+  .pgc-3 { background: linear-gradient(135deg, #06b6d4, #10b981); }
+  .pgc-4 { background: linear-gradient(135deg, #ec4899, #fbbf24); }
+  .pgc-5 { background: linear-gradient(135deg, #3b82f6, #10b981); }
+  .pgc-6 { background: linear-gradient(135deg, #a855f7, #fbbf24); }
+  
+  .pgc-body {
+    padding: 26px;
+  }
+  .pgc-body h4 {
+    font-family: 'Cinzel', 'Vazirmatn', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+    letter-spacing: 0.5px;
+  }
+  .pgc-body p {
+    color: var(--text-3);
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+    line-height: 1.75;
+  }
+  .pgc-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .pgc-tag {
+    padding: 4px 12px;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    font-size: 0.72rem;
+    color: var(--emerald-light);
+    font-weight: 600;
+  }
+  .pgc-tag:nth-child(even) {
+    background: rgba(251, 191, 36, 0.12);
+    border-color: var(--border-gold);
+    color: var(--gold);
+  }
+  
+  /* ============ خدمات ============ */
+  .services-zf {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .service-zf {
+    padding: 35px 28px;
+    background: rgba(16, 24, 21, 0.6);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(20px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .service-zf::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 150px; height: 150px;
+    background: radial-gradient(circle, rgba(16,185,129,0.15), transparent 70%);
+    filter: blur(30px);
+    transition: all 0.5s;
+  }
+  .service-zf:nth-child(even)::before {
+    background: radial-gradient(circle, rgba(251,191,36,0.15), transparent 70%);
+    top: auto; right: auto; bottom: 0; left: 0;
+  }
+  .service-zf:hover::before {
+    width: 250px; height: 250px;
+  }
+  .service-zf:hover {
+    transform: translateY(-10px);
+    border-color: var(--border-gold);
+    box-shadow: 0 30px 70px rgba(251, 191, 36, 0.2);
+  }
+  .service-icon-zf {
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(251,191,36,0.2));
+    border: 1px solid var(--border-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 22px;
+    transition: transform 0.4s;
+    position: relative;
+    z-index: 1;
+  }
+  .service-zf:hover .service-icon-zf {
+    transform: rotate(-10deg) scale(1.1);
+  }
+  .service-zf h4 {
+    font-family: 'Cinzel', 'Vazirmatn', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.5px;
+  }
+  .service-zf p {
+    color: var(--text-3);
+    font-size: 0.92rem;
+    line-height: 1.85;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* ============ تماس ============ */
+  .contact-zf {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 60px 50px;
+    background: rgba(16, 24, 21, 0.7);
+    border: 1px solid var(--border-gold);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(25px);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 80px rgba(16,185,129,0.15);
+    text-align: center;
+  }
+  .contact-zf::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -50%;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(16,185,129,0.2), transparent 60%);
+    pointer-events: none;
+    animation: contactGlow 8s ease-in-out infinite;
+  }
+  .contact-zf::after {
+    content: '';
+    position: absolute;
+    bottom: -50%; left: -50%;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(251,191,36,0.15), transparent 60%);
+    pointer-events: none;
+    animation: contactGlow 8s ease-in-out infinite reverse;
+  }
+  @keyframes contactGlow {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(20px, -20px) scale(1.1); }
+  }
+  .contact-inner-zf {
+    position: relative;
+    z-index: 1;
+  }
+  .contact-inner-zf .diamond-icon {
+    width: 60px; height: 60px;
+    background: linear-gradient(135deg, var(--emerald), var(--gold));
+    transform: rotate(45deg);
+    margin: 0 auto 30px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.6);
+    animation: diamondSpin2 6s linear infinite;
+  }
+  .contact-inner-zf .diamond-icon span {
+    transform: rotate(-45deg);
+    font-size: 1.5rem;
+    color: var(--obsidian);
+    font-weight: 900;
+  }
+  @keyframes diamondSpin2 {
+    0%, 100% { transform: rotate(45deg); }
+    50% { transform: rotate(225deg); }
+  }
+  .contact-inner-zf h3 {
+    font-family: 'Cinzel', 'Vazirmatn', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #fff, var(--emerald-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .contact-inner-zf > p {
+    color: var(--text-3);
+    margin-bottom: 35px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .contact-options-zf {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 35px;
+  }
+  .contact-opt-zf {
+    padding: 18px;
+    background: rgba(10, 15, 13, 0.7);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s;
+    text-align: right;
+  }
+  .contact-opt-zf:hover {
+    border-color: var(--border-gold);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(251, 191, 36, 0.2);
+  }
+  .opt-icon-zf {
+    width: 44px; height: 44px;
+    min-width: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(251,191,36,0.2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    border: 1px solid var(--border-gold);
+  }
+  .opt-info-zf small {
+    display: block;
+    color: var(--text-3);
+    font-size: 0.75rem;
+    margin-bottom: 2px;
+  }
+  .opt-info-zf strong {
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  .contact-btn-zf {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 45px;
+    background: linear-gradient(135deg, var(--emerald), var(--emerald-dark));
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    box-shadow: 0 15px 50px rgba(16, 185, 129, 0.5);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    font-family: inherit;
+  }
+  .contact-btn-zf::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    transform: translateX(-100%);
+    transition: transform 0.4s;
+  }
+  .contact-btn-zf:hover::before { transform: translateX(0); }
+  .contact-btn-zf > * { position: relative; z-index: 1; }
+  .contact-btn-zf:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 25px 70px rgba(251, 191, 36, 0.6);
+    color: var(--obsidian);
+  }
+  
+  /* ============ فوتر ============ */
+  .footer-zf {
+    padding: 45px 30px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+    background: rgba(10, 15, 13, 0.6);
+    position: relative;
+  }
+  .footer-zf-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .footer-logo-zf {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--emerald-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+    letter-spacing: 3px;
+  }
+  .footer-zf p {
+    color: var(--text-3);
+    font-size: 0.9rem;
+  }
+  .footer-zf .diamond-ft {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: linear-gradient(135deg, var(--emerald), var(--gold));
+    transform: rotate(45deg);
+    margin: 0 8px;
+    vertical-align: middle;
+    animation: pulseZf 2s infinite;
+  }
+  
+  /* ============ انیمیشن ============ */
+  .reveal-zf {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .reveal-zf.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* ============ دکمه بالا ============ */
+  .scroll-zf {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--emerald), var(--gold));
+    color: var(--obsidian);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 0 35px rgba(16, 185, 129, 0.6);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .scroll-zf.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  .scroll-zf:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 0 55px rgba(251, 191, 36, 0.9);
+  }
+  
+  /* =================================================== */
+  /* ============== ریسپانسیو کامل ==================== */
+  /* =================================================== */
+  
+  @media (max-width: 1100px) {
+    .hero-name-zf { font-size: 3.2rem; }
+    .title-zf { font-size: 2.3rem; }
+    .photo-container-zf { width: 350px; height: 350px; }
+    .nav-links-zf a { padding: 8px 14px; font-size: 0.82rem; }
+    .orbit-dot { display: none; }
+  }
+  
+  @media (max-width: 950px) {
+    .nav-links-zf { display: none; }
+    .menu-zf { display: flex; }
+    .hero-inner-zf {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 50px;
+    }
+    .hero-right-zf { order: -1; min-height: auto; }
+    .hero-desc-zf { margin-left: auto; margin-right: auto; }
+    .hero-buttons-zf, .socials-zf { justify-content: center; }
+    .about-zf { grid-template-columns: 1fr; gap: 40px; }
+    .about-photo-wrap-zf { max-width: 420px; margin: 0 auto; }
+    .photo-container-zf { width: 320px; height: 320px; }
+    .hex-frame { inset: -20px; }
+  
+    .nav-links-zf.mobile-open {
+      display: flex;
+      position: absolute;
+      top: calc(100% + 15px);
+      right: 30px;
+      left: 30px;
+      flex-direction: column;
+      background: rgba(10, 15, 13, 0.98);
+      backdrop-filter: blur(30px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 15px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+      gap: 6px;
+    }
+    .nav-links-zf.mobile-open a {
+      display: block;
+      padding: 12px 20px;
+      border-radius: 12px;
+    }
+  }
+  
+  @media (max-width: 700px) {
+    .header-zf { padding: 12px 0; }
+    .nav-zf { padding: 0 18px; }
+    .hero-zf { padding: 100px 18px 40px; }
+    .hero-name-zf { font-size: 2.3rem; }
+    .hero-title-zf { font-size: 1.05rem; }
+    .hero-desc-zf { font-size: 0.95rem; }
+    .photo-container-zf { width: 260px; height: 260px; }
+    .hex-frame { inset: -15px; }
+    .hex-frame-2 { inset: -8px; }
+    .halo-zf { inset: 20px; }
+    .photo-main-zf { inset: 20px; }
+  
+    .section-zf { padding: 70px 18px; }
+    .title-zf { font-size: 1.8rem; }
+    .sub-zf { font-size: 0.9rem; }
+    .head-zf { margin-bottom: 50px; }
+  
+    .about-text-zf h3 { font-size: 1.4rem; }
+    .about-stats-zf { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat-zf { padding: 16px 8px; }
+    .num-zf { font-size: 1.6rem; }
+    .label-zf { font-size: 0.75rem; }
+  
+    .skills-circular { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .circular-progress { width: 100px; height: 100px; }
+    .circular-value { font-size: 1.2rem; }
+    .skill-circle-card { padding: 22px 12px; }
+  
+    .services-zf { grid-template-columns: 1fr; }
+    .projects-gallery { grid-template-columns: 1fr; }
+    .pgc-thumb { height: 160px; font-size: 3rem; }
+  
+    .contact-zf { padding: 40px 25px; }
+    .contact-inner-zf h3 { font-size: 1.5rem; }
+    .contact-options-zf { grid-template-columns: 1fr; }
+  
+    .chip-zf { font-size: 0.72rem; padding: 8px 12px; }
+    .chip-zf-1 { top: 10px; right: -5px; }
+    .chip-zf-2 { bottom: 40px; left: -5px; }
+    .chip-zf-3 { bottom: 0; right: 20px; }
+  
+    .achievement-item { font-size: 1.1rem; }
+    .achievements-track { gap: 40px; }
+  
+    .btn-zf { padding: 13px 24px; font-size: 0.9rem; }
+    .cta-zf { padding: 9px 18px; font-size: 0.82rem; }
+    .scroll-zf { width: 46px; height: 46px; bottom: 20px; left: 20px; }
+    .diamond-logo { width: 40px; height: 40px; }
+    .logo-zf { font-size: 1rem; letter-spacing: 2px; }
+  }
+  
+  @media (max-width: 450px) {
+    .hero-name-zf { font-size: 1.9rem; }
+    .hero-buttons-zf { flex-direction: column; width: 100%; }
+    .hero-buttons-zf .btn-zf { width: 100%; justify-content: center; }
+    .photo-container-zf { width: 220px; height: 220px; }
+    .hex-frame { inset: -12px; }
+    .hex-frame-2 { inset: -6px; }
+    .about-overlay-zf strong { font-size: 1.15rem; }
+    .contact-zf { padding: 30px 18px; }
+    .contact-inner-zf h3 { font-size: 1.3rem; }
+    .footer-logo-zf { font-size: 1.1rem; }
+    .skills-circular { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .circular-progress { width: 90px; height: 90px; }
+  }
+  
+  @media (max-height: 500px) and (orientation: landscape) {
+    .hero-zf { min-height: auto; padding: 90px 20px 40px; }
+    .photo-container-zf { width: 200px; height: 200px; }
+    .chip-zf { display: none; }
+  }
